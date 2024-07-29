@@ -49,7 +49,7 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 ## Contact
 
-Your Name - naeimdz1703@gmail.com
+naeim - naeimdz1703@gmail.com
 
 
 ## Acknowledgements
