@@ -1,14 +1,16 @@
 'use client';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { auth } from '../firebaseConfig';
-import { onAuthStateChanged, signInWithEmailAndPassword, signOut as firebaseSignOut } from 'firebase/auth';
+import { auth, facebookProvider, googleProvider } from '../firebaseConfig';
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut as firebaseSignOut, signInWithPopup } from 'firebase/auth';
 
 interface AuthContextProps {
   user: any;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
+  signInWithFacebook: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -58,12 +60,35 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+
+  const signInWithGoogle = async () => {
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      console.error('Error signing in with Google:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const signInWithFacebook = async () => {
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, facebookProvider);
+    } catch (error) {
+      console.error('Error signing in with Facebook:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn: handleSignIn, signOut: handleSignOut }}>
+    <AuthContext.Provider value={{ user, loading, signIn: handleSignIn, signOut: handleSignOut,signInWithGoogle, signInWithFacebook }}>
       {children}
     </AuthContext.Provider>
   );

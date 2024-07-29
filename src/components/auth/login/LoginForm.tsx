@@ -4,28 +4,22 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import InputField from '../../common/InputField'
 import Button from '../../common/Button'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '@/firebaseConfig'
-
+import { useAuth } from '@/context/AuthContext'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const router = useRouter()
+  const { signIn, signInWithGoogle, signInWithFacebook } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      router.push('/')
-          return {
-            id: userCredential.user.uid,
-            email: userCredential.user.email,
-            name: userCredential.user.email,
-          };
+      await signIn(email, password);
+      router.push('/')          
 
     } catch (error) {
       setError('Failed to log in. Please check your credentials.')
@@ -34,6 +28,7 @@ export default function LoginForm() {
   }
 
   return (
+    <>
     <form onSubmit={handleSubmit} className="mt-8 space-y-6">
       <InputField
         label="Email address"
@@ -52,5 +47,20 @@ export default function LoginForm() {
       {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       <Button type="submit">Sign in</Button>
     </form>
+    <div className="mt-4">
+        <button
+          onClick={signInWithGoogle}
+          className="mb-2 p-2 w-full bg-red-500 text-white rounded"
+        >
+          Sign in with Google
+        </button>
+        <button
+          onClick={signInWithFacebook}
+          className="p-2 w-full bg-blue-800 text-white rounded"
+        >
+          Sign in with Facebook
+        </button>
+      </div>
+  </>
   )
 }
