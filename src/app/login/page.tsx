@@ -1,4 +1,5 @@
 import LoginForm from "@/components/login/LoginForm";
+import Link from "next/link";
 
 export default function LoginPage() {
     return (
@@ -8,6 +9,12 @@ export default function LoginPage() {
             Sign in to your account
           </h2>
           <LoginForm />
+          <p className="mt-2 text-center text-sm text-gray-600">
+          Or{' '}
+          <Link href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+            create a new account
+          </Link>
+        </p>
         </div>
       </div>
     )
