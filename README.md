@@ -6,7 +6,7 @@ This project is a robust authentication system built with Next.js 14, TypeScript
 
 ## Features
 - **Firebase Authentication**: Integration with Firebase for handling user authentication.
-- **User registration with email and password.
+- **User registration with email and password.**
 - **Social Login Integration**: Allows login with Google, Facebook.
 - **Email verification**
 - **User login**
@@ -29,29 +29,7 @@ Before you begin, ensure you have met the following requirements:
 - A Firebase project set up
 
 
-app/
-├── api/
-│   └── auth/
-│       └── [].ts
-├── components/
-│   ├── AuthStateChanged.tsx
-│   ├── Button.tsx
-│   ├── EmailVerificationCheck.tsx
-│   ├── InputField.tsx
-│   ├── LoginForm.tsx
-│   ├── PasswordRecoveryForm.tsx
-│   └── SignupForm.tsx
-├── firebase/
-│   └── config.ts
-├── login/
-│   └── page.tsx
-├── signup/
-│   └── page.tsx
-├── reset-password/
-│   └── page.tsx
-├── password-recovery/
-│   └── page.tsx
-└── layout.tsx
+
 
 
 
