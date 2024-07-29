@@ -1,6 +1,5 @@
 // middleware/auth.ts
 import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
-import { auth } from '../firebaseConfig';
 
 const withAuth = (handler: NextApiHandler) => {
   return async (req: NextApiRequest, res: NextApiResponse) => {
