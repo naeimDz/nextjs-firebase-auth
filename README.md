@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Firebase Authentication Project
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project is a robust authentication system built with Next.js 14, TypeScript, and Firebase Authentication. It provides a secure and user-friendly way to handle user registration, login, email verification, and password reset functionality.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
+- **Firebase Authentication**: Integration with Firebase for handling user authentication.
+- **User registration with email and password.
+- **Social Login Integration**: Allows login with Google, Facebook.
+- **Email verification**
+- **User login**
+- **Password reset functionality**
+- **Protected routes**
+- **API Routes**: Implements custom API routes.
+- **Responsive UI with Tailwind CSS**
+- **Server-side rendering with Next.js**
+- **Type-safe development with TypeScript**
+- **Security Best Practices**: Follows best practices to ensure security.
+- **Rate Limiting and Throttling**: Protects against brute force attacks.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Before you begin, ensure you have met the following requirements:
 
-## Learn More
+- Node.js (v14 or later)
+- npm or yarn
+- A Firebase project set up
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+app/
+├── api/
+│   └── auth/
+│       └── [].ts
+├── components/
+│   ├── AuthStateChanged.tsx
+│   ├── Button.tsx
+│   ├── EmailVerificationCheck.tsx
+│   ├── InputField.tsx
+│   ├── LoginForm.tsx
+│   ├── PasswordRecoveryForm.tsx
+│   └── SignupForm.tsx
+├── firebase/
+│   └── config.ts
+├── login/
+│   └── page.tsx
+├── signup/
+│   └── page.tsx
+├── reset-password/
+│   └── page.tsx
+├── password-recovery/
+│   └── page.tsx
+└── layout.tsx
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Contributions to this project are welcome. Please follow these steps:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+## Contact
+
+Your Name - naeimdz1703@gmail.com
+
+
+## Acknowledgements
+
+- [Next.js](https://nextjs.org/)
+- [Firebase](https://firebase.google.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
