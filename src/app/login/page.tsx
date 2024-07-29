@@ -9,7 +9,12 @@ export default function LoginPage() {
             Sign in to your account
           </h2>
           <LoginForm />
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <div className="text-sm">
+          <Link href="/password-recovery" className="font-medium text-indigo-600 hover:text-indigo-500">
+            Forgot your password?
+          </Link>
+        </div>
+        <p className="mt-2 text-center text-sm text-gray-600">
           Or{' '}
           <Link href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
             create a new account
