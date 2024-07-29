@@ -2,8 +2,10 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import InputField from '../common/InputField'
-import Button from '../common/Button'
+import InputField from '../../common/InputField'
+import Button from '../../common/Button'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@/firebaseConfig'
 
 
 export default function LoginForm() {
@@ -17,20 +19,17 @@ export default function LoginForm() {
     setError('')
 
     try {
-      const response = await fetch('/api/auth', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      })
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      router.push('/')
+          return {
+            id: userCredential.user.uid,
+            email: userCredential.user.email,
+            name: userCredential.user.email,
+          };
 
-      if (response.ok) {
-        router.push('/dashboard') // Redirect to dashboard on successful login
-      } else {
-        const data = await response.json()
-        setError(data.message || 'Login failed')
-      }
-    } catch (err) {
-      setError('An error occurred. Please try again.')
+    } catch (error) {
+      setError('Failed to log in. Please check your credentials.')
+      console.error(error)
     }
   }
 

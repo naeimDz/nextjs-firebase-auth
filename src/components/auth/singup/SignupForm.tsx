@@ -2,8 +2,10 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import InputField from '../common/InputField'
-import Button from '../common/Button'
+import InputField from '../../common/InputField'
+import Button from '../../common/Button'
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
+import { auth } from '@/firebaseConfig'
 
 
 export default function SignupForm() {
@@ -24,20 +26,12 @@ export default function SignupForm() {
     }
 
     try {
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
-      })
-
-      if (response.ok) {
-        router.push('/login') // Redirect to login page after successful signup
-      } else {
-        const data = await response.json()
-        setError(data.message || 'Signup failed')
-      }
-    } catch (err) {
-      setError('An error occurred. Please try again.')
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      await sendEmailVerification(userCredential.user)
+      router.push('/')
+    } catch (error) {
+      setError('Failed to create an account. Please try again.')
+      console.error(error)
     }
   }
 

@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import InputField from '../common/InputField'
-import Button from '../common/Button'
+import InputField from '../../common/InputField'
+import Button from '../../common/Button'
 
 
 export default function PasswordRecoveryForm() {
