@@ -1,6 +1,15 @@
 import LoginForm from "@/components/login/LoginForm";
 import Link from "next/link";
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Login',
+  description: 'Login to your account',
+}
+
+export const revalidate = 3600 // Revalidate every hour
+
 export default function LoginPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100">

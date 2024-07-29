@@ -1,5 +1,14 @@
 import SignupForm from "@/components/singup/SignupForm";
 import Link from "next/link";
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Sign up',
+  description: 'Create your account',
+}
+
+export const revalidate = 3600 // Revalidate every hour
+
 
 export default function SignupPage() {
   return (
