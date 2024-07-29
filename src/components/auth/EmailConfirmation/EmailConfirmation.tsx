@@ -1,7 +1,9 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { applyActionCode } from 'firebase/auth'
+import { auth } from '@/firebaseConfig'
+
 
 export default function EmailConfirmation({ token }: { token: string }) {
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
@@ -10,23 +12,13 @@ export default function EmailConfirmation({ token }: { token: string }) {
   useEffect(() => {
     const confirmEmail = async () => {
       try {
-        const response = await fetch('/api/confirm-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token }),
-        })
-
-        if (response.ok) {
-          setStatus('success')
-          setMessage('Your email has been successfully confirmed!')
-        } else {
-          setStatus('error')
-          const data = await response.json()
-          setMessage(data.message || 'Email confirmation failed')
-        }
-      } catch (err) {
+        await applyActionCode(auth, token)
+        setStatus('success')
+        setMessage('Your email has been successfully confirmed!')
+      } catch (error) {
         setStatus('error')
-        setMessage('An error occurred. Please try again.')
+        setMessage('Email confirmation failed. The link may be invalid or expired.')
+        console.error(error)
       }
     }
 

@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import InputField from '../../common/InputField'
 import Button from '../../common/Button'
+import { sendPasswordResetEmail } from 'firebase/auth'
+import { auth } from '@/firebaseConfig'
 
 
 export default function PasswordRecoveryForm() {
@@ -14,22 +16,12 @@ export default function PasswordRecoveryForm() {
     e.preventDefault()
     setError('')
     setSuccess(false)
-
     try {
-      const response = await fetch('/api/password-recovery', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      })
-
-      if (response.ok) {
-        setSuccess(true)
-      } else {
-        const data = await response.json()
-        setError(data.message || 'Password recovery request failed')
-      }
-    } catch (err) {
-      setError('An error occurred. Please try again.')
+      await sendPasswordResetEmail(auth, email)
+      setSuccess(true)
+    } catch (error) {
+      setError('Failed to send password reset email. Please try again.')
+      console.error(error)
     }
   }
 
