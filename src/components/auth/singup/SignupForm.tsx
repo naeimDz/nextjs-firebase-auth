@@ -6,6 +6,7 @@ import InputField from '../../common/InputField'
 import Button from '../../common/Button'
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
 import { auth } from '@/firebaseConfig'
+import { useAuth } from '@/context/AuthContext'
 
 
 export default function SignupForm() {
@@ -15,6 +16,7 @@ export default function SignupForm() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
   const router = useRouter()
+  const { signInWithGoogle, signInWithFacebook } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -36,7 +38,8 @@ export default function SignupForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+    <>
+   <form onSubmit={handleSubmit} className="mt-8 space-y-6">
       <InputField
         label="Full Name"
         type="text"
@@ -68,5 +71,20 @@ export default function SignupForm() {
       {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
       <Button type="submit">Sign up</Button>
     </form>
+     <div className="mt-4">
+     <button
+       onClick={signInWithGoogle}
+       className="mb-2 p-2 w-full bg-red-500 text-white rounded"
+     >
+       Sign in with Google
+     </button>
+     <button
+       onClick={signInWithFacebook}
+       className="p-2 w-full bg-blue-800 text-white rounded"
+     >
+       Sign in with Facebook
+     </button>
+   </div>
+   </>
   )
 }

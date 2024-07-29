@@ -62,7 +62,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 
   const signInWithGoogle = async () => {
-    setLoading(true);
     try {
       await signInWithPopup(auth, googleProvider);
     } catch (error) {
@@ -73,7 +72,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const signInWithFacebook = async () => {
-    setLoading(true);
     try {
       await signInWithPopup(auth, facebookProvider);
     } catch (error) {
